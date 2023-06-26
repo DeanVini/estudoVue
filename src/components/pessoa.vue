@@ -1,33 +1,18 @@
 <template>
     <div>
-        <h2>Esta é uma pessoa: {{ nome }}</h2>
-        <info/>
+        <Picture :userObject="data"/>
 
-        <a v-bind:href="siteRef" target="_blank">meu site</a>
+        <a :href="''" target="_blank">meu site</a>
 
-        <picture/>
     </div>
 </template>
 
 
 
-<script>
-import info from './info.vue';
-import picture from './picture.vue';
+<script setup>
+import Picture from "./Picture.vue";
+import { data } from '../utils/data.js';
+import { onMounted, ref } from "vue";
 
-    export default{
-        components:{
-            info,
-            picture
-        },
 
-        nome: "pessoa",
-
-        data(){
-            return{
-                nome: "Dean",
-                siteRef: "https://www.google.com.br/"
-            }
-        }
-    }
 </script>

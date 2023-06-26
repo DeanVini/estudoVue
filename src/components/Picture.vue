@@ -1,42 +1,37 @@
 <template>
-    <img :src="pic" :alt="comment" @click="clickImg">
+    <div>
+        <img :src="userObject[count].imgSource" :alt="'nada'" @click="clickImg">
+        <info :user-object="userObject[count]"/>
+    </div>
 </template>
 
-<script>
-export default {
-    name: 'Picture',
-    data() {
-        return {
-            pic: 'https://avatars.githubusercontent.com/u/85954641?v=4',
-            comment: 'gaybriel',
-            count: 1
+<script setup>
+import { ref } from "vue";
+import Info from "./info.vue";
 
-        }
-    },
-    methods:{
-        clickImg(){
-            this.count ++;
-            if(this.count == 2){
-                this.pic = "https://avatars.githubusercontent.com/u/81484737?v=4"
 
-            }
+const props = defineProps(["userObject"]);
 
-            if(this.count == 3){
-                this.pic = "https://avatars.githubusercontent.com/u/42882594?v=4"
 
-            }
+let count = ref(0);
 
-            if(this.count == 3){
-                this.pic = "https://avatars.githubusercontent.com/u/42882594?v=4"
-
-            }
-
-            
-        }
+function clickImg(){
+    if(count.value > 3){
+        count.value = 0;
     }
+    else{
+        count.value++;
+    }
+
 }
+
 </script>
 
-<style>
-
+<style scoped>
+img{
+    transition: all 1s ease;
+    border: 20px;
+    border-color: blue;
+    background-color: blue;
+}
 </style>
